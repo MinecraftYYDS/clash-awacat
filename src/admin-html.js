@@ -423,7 +423,7 @@ export const ADMIN_HTML = `<!DOCTYPE html>
     }
 
     function renderRulesPage() {
-      var rulesText = (state.rules.customRules || []).join('\n');
+      var rulesText = (state.rules.customRules || []).join('\\n');
       return '' +
       '<h2 class="mb12">规则配置</h2>' +
       '<div class="card">' +
@@ -581,7 +581,7 @@ export const ADMIN_HTML = `<!DOCTYPE html>
       var lines = result.map(function (item) {
         return item.id + ' | ' + (item.online ? '在线' : '离线') + ' | ' + item.latency + 'ms';
       });
-      alert(lines.join('\n') || '无节点');
+      alert(lines.join('\\n') || '无节点');
     }
 
     function openNodeModal(id) {
@@ -824,7 +824,7 @@ export const ADMIN_HTML = `<!DOCTYPE html>
       var preset = (document.getElementById('rulesPreset') || {}).value || 'loyalsoldier';
       var outbound = (document.getElementById('rulesOutbound') || {}).value || 'proxy';
       var txt = (document.getElementById('customRules') || {}).value || '';
-      var customRules = txt.split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
+      var customRules = txt.split('\\n').map(function (x) { return x.trim(); }).filter(Boolean);
 
       var ok = await api('/rules', {
         method: 'PUT',

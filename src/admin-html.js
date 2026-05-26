@@ -326,7 +326,7 @@ export const ADMIN_HTML = `<!DOCTYPE html>
 
     function navBtn(id, title) {
       var cls = 'nav-btn' + (currentPage === id ? ' active' : '');
-      return '<button class="' + cls + '" onclick="goPage(\\\'' + id + '\\\')">' + title + '</button>';
+      return '<button class="' + cls + '" onclick="goPage(&quot;' + id + '&quot;)">' + title + '</button>';
     }
 
     function renderLayout() {
@@ -364,9 +364,9 @@ export const ADMIN_HTML = `<!DOCTYPE html>
           '<td>' + (n.enabled === false ? '<span class="tag off">禁用</span>' : '<span class="tag ok">启用</span>') + '</td>' +
           '<td>' +
             '<div class="actions">' +
-              '<button class="info" onclick="openNodeModal(\\\'' + n.id + '\\\')">编辑</button>' +
-              '<button class="warn" onclick="toggleNode(\\\'' + n.id + '\\\')">' + (n.enabled === false ? '启用' : '禁用') + '</button>' +
-              '<button class="danger" onclick="deleteNode(\\\'' + n.id + '\\\')">删除</button>' +
+              '<button class="info" onclick="openNodeModal(&quot;' + n.id + '&quot;)">编辑</button>' +
+              '<button class="warn" onclick="toggleNode(&quot;' + n.id + '&quot;)">' + (n.enabled === false ? '启用' : '禁用') + '</button>' +
+              '<button class="danger" onclick="deleteNode(&quot;' + n.id + '&quot;)">删除</button>' +
             '</div>' +
           '</td>' +
         '</tr>';
@@ -395,12 +395,12 @@ export const ADMIN_HTML = `<!DOCTYPE html>
         return '' +
           '<tr>' +
             '<td>' + escapeHtml(s.name) + '</td>' +
-            '<td class="wrap"><a href="javascript:void(0)" onclick="copyText(\\\'' + escapeHtml(url).replace(/'/g, '&#39;') + '\\\')">' + escapeHtml(url) + '</a></td>' +
+            '<td class="wrap"><a href="javascript:void(0)" onclick="copyText(&quot;' + escapeHtml(url).replace(/"/g, '&quot;') + '&quot;)">' + escapeHtml(url) + '</a></td>' +
             '<td>' + escapeHtml(nodesText) + '</td>' +
             '<td>' +
               '<div class="actions">' +
-                '<button class="info" onclick="openSubModal(\\\'' + s.id + '\\\')">编辑</button>' +
-                '<button class="danger" onclick="deleteSub(\\\'' + s.id + '\\\')">删除</button>' +
+                '<button class="info" onclick="openSubModal(&quot;' + s.id + '&quot;)">编辑</button>' +
+                '<button class="danger" onclick="deleteSub(&quot;' + s.id + '&quot;)">删除</button>' +
               '</div>' +
             '</td>' +
           '</tr>';

@@ -11,4 +11,4 @@ enabled = true
 
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_REAL_KV_NAMESPACE_ID"
+id = "SUB_STORE"

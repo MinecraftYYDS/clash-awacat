@@ -16,7 +16,6 @@ const DEFAULT_RULES = {
 
 const DEFAULT_NODES = [
   {
-    id: crypto.randomUUID(),
     name: "JP-中转机直连",
     type: "hysteria2",
     server: "jp.awacat.cc",
@@ -28,7 +27,6 @@ const DEFAULT_NODES = [
     skipCertVerify: false
   },
   {
-    id: crypto.randomUUID(),
     name: "JP-Softbank 中转",
     type: "hysteria2",
     server: "jp.awacat.cc",
@@ -40,7 +38,6 @@ const DEFAULT_NODES = [
     skipCertVerify: true
   },
   {
-    id: crypto.randomUUID(),
     name: "JP-KDDI 中转",
     type: "hysteria2",
     server: "jp.awacat.cc",
@@ -52,7 +49,6 @@ const DEFAULT_NODES = [
     skipCertVerify: true
   },
   {
-    id: crypto.randomUUID(),
     name: "JP-Softbank 直连",
     type: "hysteria2",
     server: "softbank88.xzcloudnode.sbs",
@@ -64,7 +60,6 @@ const DEFAULT_NODES = [
     skipCertVerify: true
   },
   {
-    id: crypto.randomUUID(),
     name: "JP-KDDI 直连",
     type: "hysteria2",
     server: "kddi10gbps.xzcloudnode.sbs",
@@ -1360,11 +1355,19 @@ async function ensureInitialized(env) {
     return;
   }
 
-  await env.KV.put(KV_KEYS.NODES, JSON.stringify(DEFAULT_NODES));
+  await env.KV.put(KV_KEYS.NODES, JSON.stringify(buildDefaultNodes()));
   await env.KV.put(KV_KEYS.SUBSCRIPTIONS, JSON.stringify([]));
   await env.KV.put(KV_KEYS.RULES, JSON.stringify(DEFAULT_RULES));
   await env.KV.put(KV_KEYS.STATS, JSON.stringify({}));
   await env.KV.put(KV_KEYS.INIT, "1");
+}
+
+function buildDefaultNodes() {
+  return DEFAULT_NODES.map((node, index) => ({
+    ...node,
+    id: crypto.randomUUID(),
+    sort: Number.isFinite(Number(node.sort)) ? Number(node.sort) : index
+  }));
 }
 
 function corsHeaders() {
@@ -2139,7 +2142,7 @@ async function importAll(env, payload) {
 }
 
 async function resetAll(env) {
-  await env.KV.put(KV_KEYS.NODES, JSON.stringify(DEFAULT_NODES));
+  await env.KV.put(KV_KEYS.NODES, JSON.stringify(buildDefaultNodes()));
   await env.KV.put(KV_KEYS.SUBSCRIPTIONS, JSON.stringify([]));
   await env.KV.put(KV_KEYS.RULES, JSON.stringify(DEFAULT_RULES));
   await env.KV.put(KV_KEYS.STATS, JSON.stringify({}));

@@ -1,7 +1,14 @@
-name = "sub-panel"
-main = "src/index.js"
-compatibility_date = "2024-01-01"
+[observability]
+enabled = false
+head_sampling_rate = 1
 
-[[kv_namespaces]]
-binding = "KV"
-id = "替换为你的KV_ID"
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1

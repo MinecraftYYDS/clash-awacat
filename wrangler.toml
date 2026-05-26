@@ -1,6 +1,8 @@
 name = "clash"
 main = "src/index.js"
 compatibility_date = "2026-05-26"
+workers_dev = true
+preview_urls = true
 
 routes = [
 	{ pattern = "vpn.awacat.cc", zone_name = "awacat.cc", custom_domain = true }
@@ -11,4 +13,4 @@ enabled = true
 
 [[kv_namespaces]]
 binding = "KV"
-id = "SUB_STORE"
+id = "5e034b65d0eb49eaac71a447413dbc1a"

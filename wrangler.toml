@@ -1,7 +1,14 @@
-name = "sub-panel"
+name = "clash"
 main = "src/index.js"
 compatibility_date = "2026-05-26"
 
+routes = [
+	{ pattern = "vpn.awacat.cc", zone_name = "awacat.cc", custom_domain = true }
+]
+
+[observability.logs]
+enabled = true
+
 [[kv_namespaces]]
 binding = "KV"
-id = "SUB_STORE"
+id = "REPLACE_WITH_REAL_KV_NAMESPACE_ID"
